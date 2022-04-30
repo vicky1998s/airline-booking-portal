@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>List of Airline
+    <span style="margin-left: 120vh"><button class="btn btn-info" [routerLink]="['/addnewairline']"  >Add New Airline</button></span>
+  </h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>FlightName</th>
+          <th>ContactNumber</th>
+          <th>ContactAddress</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let airport of flight_name">
+          <td> {{airport.flightName}}</td>
+          <td>{{airport.contactNumber}}</td>
+          <td>{{airport.contactAddress}}</td>
+          <td><button (click)="removeAirport(airport.flightId)" class="btn btn-danger">Delete</button>
+            <button class="btn btn-info" style="margin-left: 10px" [routerLink]="['/updateAirline',airport.flightId]">update</button>
+              <!-- <button  class="btn btn-info" style="margin-left: 10px">Details</button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
