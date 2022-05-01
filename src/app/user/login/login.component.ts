@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Login } from 'src/app/models/class/login';
+import { User } from 'src/app/models/interface/user';
+import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-login',
@@ -6,10 +12,64 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  user_details : Array<User>=[];
+  user: Login=new Login();
+  submitted=false;
+  addUserForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder,private UserService:UserService,private router: Router) {
+    this.addUserForm =  this.fb.group({
+      userName: [null, Validators.required],
+     // email: [null, Validators.required],
+      password: [null, Validators.required],
+    });
+   }
+
 
   ngOnInit() {
   }
+
+  onSubmit() {
+    console.log(this.addUserForm.value);
+
+
+    if (this.addUserForm.valid) {
+        // this.user = Object.assign(this.user, this.registerationForm.value);
+        this.UserService.login(this.userData()).subscribe((res:any) =>
+        {
+          //console.log(res);
+            this.user_details=res;
+            //console.log(this.user_details);
+            this.onReset();
+            this.submitted = true;
+        });
+
+    }
+}
+
+onReset() {
+    this.submitted = false;
+    this.addUserForm.reset();
+}
+
+
+userData(): Login {
+    return this.user = {
+        userName: this.userName.value,
+       // email: this.email.value,
+        password: this.password.value,
+
+    };
+}
+
+get userName() {
+  return this.addUserForm.get('userName') as FormControl;
+}
+
+
+get password() {
+  return this.addUserForm.get('password') as FormControl;
+}
+
 
 }

@@ -5,7 +5,7 @@
         <h3>Add New Schedule</h3>
       </div>
       <div class="card-body">
-        <form [formGroup]=" addScheduleForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="addScheduleForm" (ngSubmit)="onSubmit()">
           <div class="form-group col-12">
             <label for=" flightNumber" class="form-label">Airline Number</label>
             <input type="text" class="form-control" formControlName="flightNumber"
@@ -149,7 +149,7 @@
             </span>
           </div>
           <div class="form-group col-12">
-            <button type="submit" class="btn btn-primary" [disabled]="! addScheduleForm.valid">Add</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!addScheduleForm.valid">Add</button>
             <button type="button" class="btn btn-secondary ml-2" routerLink="/schedule">Cancel</button>
           </div>
         </form>

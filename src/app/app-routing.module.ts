@@ -14,6 +14,8 @@ import { AddScheduleComponent } from './schedule/add-schedule/add-schedule.compo
 import { ListAllSchedulesComponent } from './schedule/list-all-schedules/list-all-schedules.component';
 import { ListCurrentScheduleComponent } from './schedule/list-current-schedule/list-current-schedule.component';
 import { UpdateScheduleComponent } from './schedule/update-schedule/update-schedule.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 
 const routes: Routes = [
   {path:'',component:ListCurrentScheduleComponent,pathMatch:'full'},
@@ -29,7 +31,9 @@ const routes: Routes = [
   {path:'listBookingbyid',component:ListBookingbyIdComponent},
   {path:'listBooking',component:ListAllBookingsComponent},
   {path:'listpassengers/:id',component:ListPassengerbyBookingidComponent},
-  {path:'booknow/:id',component:CreateBookingComponent}
+  {path:'booknow/:id',component:CreateBookingComponent},
+  {path:'registerUser',component:RegisterComponent},
+  {path:'loginUser',component:LoginComponent}
 
 ];
 

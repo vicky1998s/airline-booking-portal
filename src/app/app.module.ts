@@ -20,6 +20,8 @@ import { ListPassengerbyBookingidComponent } from './booking/passenger/list-pass
 import { ListBookingbyIdComponent } from './booking/list-bookingby-id/list-bookingby-id.component';
 import { ListAllBookingsComponent } from './booking/list-all-bookings/list-all-bookings.component';
 import { CreateBookingComponent } from './booking/create-booking/create-booking.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { CreateBookingComponent } from './booking/create-booking/create-booking.
     ListBookingbyIdComponent,
     ListAllBookingsComponent,
     ListPassengerbyBookingidComponent,
-    CreateBookingComponent
+    CreateBookingComponent,
+    RegisterComponent,
+    LoginComponent
    ],
   imports: [
     HttpClientModule,

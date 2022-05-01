@@ -12,11 +12,11 @@ import { BookingScheduleService } from 'src/app/services/booking-schedule.servic
 export class AddScheduleComponent implements OnInit {
   schedule: Schedule=new Schedule();
   submitted=false;
-   addScheduleForm: FormGroup;
+  addScheduleForm: FormGroup;
 
   constructor(private fb: FormBuilder,private ScheduleService:BookingScheduleService,
     private router: Router) {
-      this. addScheduleForm =  this.fb.group({
+      this.addScheduleForm =  this.fb.group({
         flightNumber: [null, Validators.required],
        fromPlace: [null, Validators.required],
        toPlace: [null, Validators.required],
@@ -37,10 +37,10 @@ export class AddScheduleComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    console.log(this. addScheduleForm.value);
+    console.log(this.addScheduleForm.value);
 
 
-    if (this. addScheduleForm.valid) {
+    if (this.addScheduleForm.valid) {
         // this.user = Object.assign(this.user, this.registerationForm.value);
         this.ScheduleService.addSchedule(this.userData()).subscribe(() =>
         {
@@ -53,7 +53,7 @@ export class AddScheduleComponent implements OnInit {
 
   onReset() {
     this.submitted = false;
-    this. addScheduleForm.reset();
+    this.addScheduleForm.reset();
   }
   userData(): Schedule {
     return this.schedule = {
@@ -75,52 +75,52 @@ export class AddScheduleComponent implements OnInit {
     };
   }
   get  flightNumber() {
-    return this. addScheduleForm.get('flightNumber') as FormControl;
+    return this.addScheduleForm.get('flightNumber') as FormControl;
     }
 
     get fromPlace() {
-    return this. addScheduleForm.get('fromPlace') as FormControl;
+    return this.addScheduleForm.get('fromPlace') as FormControl;
     }
     get toPlace() {
-    return this. addScheduleForm.get('toPlace') as FormControl;
+    return this.addScheduleForm.get('toPlace') as FormControl;
     }
 
     get startDate() {
-    return this. addScheduleForm.get('startDate') as FormControl;
+    return this.addScheduleForm.get('startDate') as FormControl;
     }
 
     get endDate() {
-    return this. addScheduleForm.get('endDate') as FormControl;
+    return this.addScheduleForm.get('endDate') as FormControl;
     }
     get scheduledDays() {
-    return this. addScheduleForm.get('scheduledDays') as FormControl;
+    return this.addScheduleForm.get('scheduledDays') as FormControl;
     }
     get instrumentused() {
-    return this. addScheduleForm.get('instrumentused') as FormControl;
+    return this.addScheduleForm.get('instrumentused') as FormControl;
     }
 
     get economySeats() {
-    return this. addScheduleForm.get('economySeats') as FormControl;
+    return this.addScheduleForm.get('economySeats') as FormControl;
     }
     get businessClassSeats() {
-    return this. addScheduleForm.get('businessClassSeats') as FormControl;
+    return this.addScheduleForm.get('businessClassSeats') as FormControl;
     }
 
     // get totalSeats() {
-    // return this. addScheduleForm.get('totalSeats') as FormControl;
+    // return this.addScheduleForm.get('totalSeats') as FormControl;
     // }
 
     get economyCost() {
-    return this. addScheduleForm.get('economyCost') as FormControl;
+    return this.addScheduleForm.get('economyCost') as FormControl;
     }
     get businessClassCost() {
-    return this. addScheduleForm.get('businessClassCost') as FormControl;
+    return this.addScheduleForm.get('businessClassCost') as FormControl;
     }
     get noOfRows() {
-    return this. addScheduleForm.get('noOfRows') as FormControl;
+    return this.addScheduleForm.get('noOfRows') as FormControl;
     }
     get meal() {
-    return this. addScheduleForm.get('meal') as FormControl;
+    return this.addScheduleForm.get('meal') as FormControl;
     }
 
 

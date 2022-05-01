@@ -1,3 +1,94 @@
-<p>
-  create-booking works!
-</p>
+<div class="row">
+  <div class="col-6 m-auto">
+    <div class="card m-auto">
+      <div class="card-header">
+        <h3>Add New Schedule</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="addBookingForm" (ngSubmit)="onSubmit()">
+          <div class="form-group col-12">
+            <label for=" noOfSeats" class="form-label">No Of Passengers</label>
+            <input type="number" class="form-control" formControlName="noOfSeats"
+            [ngStyle]="{'border-color': (!noOfSeats.valid && (noOfSeats.touched )) ?
+            'red':'none'}">
+            <span *ngIf="!noOfSeats.valid && (noOfSeats.touched)" class="error-block"
+              style="color: red; font-style: italic;">
+              Please Select Number of Seats
+            </span>
+          </div>
+          <div formArrayName="passenger">
+
+          <div class="form-group col-12">
+            <label for="passengerName" class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="passengerName"
+            [ngStyle]="{'border-color': (!passengerName.valid && (passengerName.touched )) ?
+          'red':'none'}">
+            <span *ngIf="!passengerName.valid && (passengerName.touched )" class="error-block">
+              <span *ngIf="passengerName.hasError('required')" style="color: red; font-style: italic;">
+                Passenger Name Required
+              </span>
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="passengerGender" class="form-label">Gender</label>
+            <input type="text" class="form-control" formControlName="passengerGender"
+            [ngStyle]="{'border-color': (!passengerGender.valid && (passengerGender.touched )) ?
+           'red':'none'}">
+            <span *ngIf="!passengerGender.valid && (passengerGender.touched )" class="error-block">
+              <span *ngIf="passengerGender.hasError('required')" style="color: red; font-style: italic;">
+                Please provide Gender
+              </span>
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="passengerAge" class="form-label">Age</label>
+            <input type="number" class="form-control" formControlName="passengerAge"
+            [ngStyle]="{'border-color': (!passengerAge.valid && (passengerAge.touched )) ?
+           'red':'none'}">
+            <span *ngIf="!passengerAge.valid && (passengerAge.touched )" class="error-block">
+              <span *ngIf="passengerAge.hasError('required')" style="color: red; font-style: italic;">
+                Please provide Age
+              </span>
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="typeOfSeats" class="form-label">Class</label>
+            <input type="text" class="form-control" formControlName="typeOfSeats"
+            [ngStyle]="{'border-color': (!typeOfSeats.valid && (typeOfSeats.touched )) ?
+           'red':'none'}">
+            <span *ngIf="!typeOfSeats.valid && (typeOfSeats.touched )" class="error-block">
+              <span *ngIf="typeOfSeats.hasError('required')" style="color: red; font-style: italic;">
+                Please Select Class "Economy or Business"
+              </span>
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="optForMeal" class="form-label">Meal</label>
+            <input type="text" class="form-control" formControlName="optForMeal"
+            [ngStyle]="{'border-color': (!optForMeal.valid && (optForMeal.touched )) ?
+           'red':'none'}">
+            <span *ngIf="!optForMeal.valid && (optForMeal.touched )" class="error-block">
+              <span *ngIf="optForMeal.hasError('required')" style="color: red; font-style: italic;">
+                Please Select Meal
+              </span>
+            </span>
+          </div>
+         </div>
+
+          <div class="form-group col-12">
+            <label for="couponCode" class="form-label">Coupon Code</label>
+            <input type="text" class="form-control" formControlName="couponCode">
+          </div>
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary" [disabled]="!addBookingForm.valid">Add</button>
+            <button type="button" class="btn btn-secondary ml-2" routerLink="/schedule">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div *ngIf="submitted" style="color: green; text-align: center; ">
+  <h4>Schedule Added successfully!</h4>
+</div>
