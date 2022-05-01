@@ -1,11 +1,9 @@
 <div class="panel panel-primary">
-  <div class="panel-heading">
-    <h2>Book your flight!!!
-    <!-- <span style="margin-left: 120vh"><button class="btn btn-info"  >Add New Airline</button></span> -->
-  </h2>
+  <div class="card text-center mb-4">
+    <h1 class="font-bold mt-4 mb-3 h5"><i class="fa-solid fa-plane-up"></i> Book Your Flight </h1>
   </div>
   <div class="panel-body">
-    <table class="table table-striped">
+    <table class="table">
       <thead style="text-align: center;">
         <tr>
           <th>Source</th>
@@ -31,7 +29,10 @@
            <td>{{schedule.economyCost}}</td>
           <td>
             <!-- <button (click)="removeSchedule(schedule.scheduleDetailsId)" class="btn btn-danger">Delete</button> -->
-            <button class="btn btn-info" style="margin-left: 10px" [routerLink]="['/booknow',schedule.scheduleDetailsId]">Book Now</button>
+
+            <button class="button" style="vertical-align:middle"
+            [routerLink]="['/booknow',schedule.scheduleDetailsId]"
+            ><span>Book Now </span></button>
               <!-- <button  class="btn btn-info" style="margin-left: 10px">Details</button> -->
           </td>
         </tr>

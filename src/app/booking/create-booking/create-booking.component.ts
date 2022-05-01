@@ -16,21 +16,30 @@ export class CreateBookingComponent implements OnInit {
   id:number=0;
   submitted=false;
   addBookingForm: FormGroup;
+  addBookingMeta: FormGroup;
+  Passengers:any[]=[];
+
 
   constructor(private fb: FormBuilder,private BookingService:BookingScheduleService,
     private router: Router,private route:ActivatedRoute) {
-      this.addBookingForm =  this.fb.group({
+
+      this.addBookingMeta =  this.fb.group({
+        name: [null, Validators.required],
+        emailId: [null, Validators.required],
         noOfSeats: [null, Validators.required],
-        // passengerName: [null, Validators.required],
-        // passengerGender: [null, Validators.required],
-        // passengerAge: [null, Validators.required],
-        // typeOfSeats: [null, Validators.required],
-        // optForMeal: [null, Validators.required],
-         passenger:this.fb.array([
-           this.addPassengersList()
-         ]),
-        couponCode:"",
-     } );
+        couponCode: [null, Validators.required]
+    });
+
+      this.addBookingForm =  this.fb.group({
+        passengerName: [null, Validators.required],
+        passengerGender: [null, Validators.required],
+        passengerAge: [null, Validators.required],
+        typeOfSeats: [null, Validators.required],
+        optForMeal: [null, Validators.required]
+    });
+
+
+
      }
 
   ngOnInit() {
@@ -38,32 +47,32 @@ export class CreateBookingComponent implements OnInit {
     this.getScheduleDetailsbyid()
   }
 
-  addPassengersList():FormGroup{
-    return this.fb.group({
-    passengerName: [null, Validators.required],
-    passengerGender: [null, Validators.required],
-    passengerAge: [null, Validators.required],
-    typeOfSeats: [null, Validators.required],
-    optForMeal: [null, Validators.required]
-    });
+  AddPassenger(){
+    this.Passengers.push(this.addBookingForm.value);
+    this.addBookingForm.reset();
+
   }
-  onSubmit() {
-    console.log(this.addBookingForm.value);
 
+  deletePassenger(pname:string,age:number){
+    this.Passengers = this.Passengers.filter(obj => obj.passengerName !== pname
+      && obj.passengerAge!==age);
+  }
 
+  onBookTicket(){
+    let Finaloutput = Object.assign({},{'passenger':this.Passengers},this.addBookingMeta.value);
     if (this.addBookingForm.valid) {
-        // this.user = Object.assign(this.user, this.registerationForm.value);
-        this.BookingService.addBooking(this.userData()).subscribe((res) =>
-        {
-          console.log(res);
-            this.onReset();
-            this.submitted = true;
-        });
+      this.BookingService.addBooking(Finaloutput).subscribe((res) =>
+      {
+        console.log(res);
+          this.onReset();
+      });
 
-    }
   }
+  }
+
+
   onReset() {
-    this.submitted = false;
+    this.addBookingMeta.reset();
     this.addBookingForm.reset();
   }
 
@@ -86,9 +95,15 @@ export class CreateBookingComponent implements OnInit {
   get  scheduleDetailsId() {
     return this.addBookingForm.get('scheduleDetailsId') as FormControl;
     }
+    get name() {
+      return this.addBookingMeta.get('name') as FormControl;
+      }
+      get emailId() {
+        return this.addBookingMeta.get('emailId') as FormControl;
+        }
 
     get noOfSeats() {
-    return this.addBookingForm.get('noOfSeats') as FormControl;
+    return this.addBookingMeta.get('noOfSeats') as FormControl;
     }
     get passengerName() {
     return this.addBookingForm.get('passengerName') as FormControl;
@@ -109,12 +124,11 @@ export class CreateBookingComponent implements OnInit {
     }
 
     get couponCode() {
-    return this.addBookingForm.get('couponCode') as FormControl;
+    return this.addBookingMeta.get('couponCode') as FormControl;
     }
 
   getScheduleDetailsbyid(){
     return this.BookingService.getScheduleById(this.id).subscribe((res:any)=>{
-      console.log(res.result);
       this.schedule_details=res.result;
 
     })

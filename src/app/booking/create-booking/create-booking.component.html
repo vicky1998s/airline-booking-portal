@@ -1,94 +1,203 @@
-<div class="row">
-  <div class="col-6 m-auto">
-    <div class="card m-auto">
-      <div class="card-header">
-        <h3>Add New Schedule</h3>
-      </div>
-      <div class="card-body">
-        <form [formGroup]="addBookingForm" (ngSubmit)="onSubmit()">
-          <div class="form-group col-12">
-            <label for=" noOfSeats" class="form-label">No Of Passengers</label>
-            <input type="number" class="form-control" formControlName="noOfSeats"
-            [ngStyle]="{'border-color': (!noOfSeats.valid && (noOfSeats.touched )) ?
-            'red':'none'}">
-            <span *ngIf="!noOfSeats.valid && (noOfSeats.touched)" class="error-block"
-              style="color: red; font-style: italic;">
-              Please Select Number of Seats
-            </span>
-          </div>
-          <div formArrayName="passenger">
 
-          <div class="form-group col-12">
-            <label for="passengerName" class="form-label">Name</label>
-            <input type="text" class="form-control" formControlName="passengerName"
-            [ngStyle]="{'border-color': (!passengerName.valid && (passengerName.touched )) ?
-          'red':'none'}">
-            <span *ngIf="!passengerName.valid && (passengerName.touched )" class="error-block">
-              <span *ngIf="passengerName.hasError('required')" style="color: red; font-style: italic;">
-                Passenger Name Required
-              </span>
-            </span>
-          </div>
-          <div class="form-group col-12">
-            <label for="passengerGender" class="form-label">Gender</label>
-            <input type="text" class="form-control" formControlName="passengerGender"
-            [ngStyle]="{'border-color': (!passengerGender.valid && (passengerGender.touched )) ?
-           'red':'none'}">
-            <span *ngIf="!passengerGender.valid && (passengerGender.touched )" class="error-block">
-              <span *ngIf="passengerGender.hasError('required')" style="color: red; font-style: italic;">
-                Please provide Gender
-              </span>
-            </span>
-          </div>
-          <div class="form-group col-12">
-            <label for="passengerAge" class="form-label">Age</label>
-            <input type="number" class="form-control" formControlName="passengerAge"
-            [ngStyle]="{'border-color': (!passengerAge.valid && (passengerAge.touched )) ?
-           'red':'none'}">
-            <span *ngIf="!passengerAge.valid && (passengerAge.touched )" class="error-block">
-              <span *ngIf="passengerAge.hasError('required')" style="color: red; font-style: italic;">
-                Please provide Age
-              </span>
-            </span>
-          </div>
-          <div class="form-group col-12">
-            <label for="typeOfSeats" class="form-label">Class</label>
-            <input type="text" class="form-control" formControlName="typeOfSeats"
-            [ngStyle]="{'border-color': (!typeOfSeats.valid && (typeOfSeats.touched )) ?
-           'red':'none'}">
-            <span *ngIf="!typeOfSeats.valid && (typeOfSeats.touched )" class="error-block">
-              <span *ngIf="typeOfSeats.hasError('required')" style="color: red; font-style: italic;">
-                Please Select Class "Economy or Business"
-              </span>
-            </span>
-          </div>
-          <div class="form-group col-12">
-            <label for="optForMeal" class="form-label">Meal</label>
-            <input type="text" class="form-control" formControlName="optForMeal"
-            [ngStyle]="{'border-color': (!optForMeal.valid && (optForMeal.touched )) ?
-           'red':'none'}">
-            <span *ngIf="!optForMeal.valid && (optForMeal.touched )" class="error-block">
-              <span *ngIf="optForMeal.hasError('required')" style="color: red; font-style: italic;">
-                Please Select Meal
-              </span>
-            </span>
-          </div>
-         </div>
-
-          <div class="form-group col-12">
-            <label for="couponCode" class="form-label">Coupon Code</label>
-            <input type="text" class="form-control" formControlName="couponCode">
-          </div>
-          <div class="form-group col-12">
-            <button type="submit" class="btn btn-primary" [disabled]="!addBookingForm.valid">Add</button>
-            <button type="button" class="btn btn-secondary ml-2" routerLink="/schedule">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
+<!-- <br>
 <div *ngIf="submitted" style="color: green; text-align: center; ">
   <h4>Schedule Added successfully!</h4>
+</div>  -->
+<div class="hm-gradient">
+  <main>
+    <div class="container mt-4">
+      <div class="card text-center mb-4">
+        <h1 class="font-bold mt-4 mb-3 h5"><i class="fa-solid fa-plane-up"></i> Book Your Flight </h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <form [formGroup]="addBookingMeta">
+              <div class="row">
+                <div class="col">
+                  <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Booking Name"
+                      formControlName="name"
+                      [ngStyle]="{
+                        'border-color':
+                          !name.valid && name.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                </div>
+                <div class="col">
+                  <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Email ID"
+                      formControlName="emailId"
+                      [ngStyle]="{
+                        'border-color':
+                          !emailId.valid && emailId.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col">
+                  <input
+                      type="text"
+                      class="form-control"
+                      placeholder="No of Seats"
+                      formControlName="noOfSeats"
+                      [ngStyle]="{
+                        'border-color':
+                          !noOfSeats.valid && noOfSeats.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                </div>
+                <div class="col">
+                  <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Have a Coupon? Enter here!!!"
+                      formControlName="couponCode"
+                      [ngStyle]="{
+                        'border-color':
+                          !couponCode.valid && couponCode.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                  <span class="coupontext">Yay Coupon Applied!!!</span>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+
+          <div class="card mt-4">
+            <form [formGroup]="addBookingForm">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Passenger Name"
+                      formControlName="passengerName"
+                      [ngStyle]="{
+                        'border-color':
+                          !passengerName.valid && passengerName.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Age"
+                      formControlName="passengerAge"
+                      [ngStyle]="{
+                        'border-color':
+                          !passengerAge.valid && passengerAge.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Gender"
+                      formControlName="passengerGender"
+                      [ngStyle]="{
+                        'border-color':
+                          !passengerGender.valid && passengerGender.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Opt for Meal"
+                      formControlName="optForMeal"
+                      [ngStyle]="{
+                        'border-color':
+                          !optForMeal.valid && optForMeal.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                  </div>
+                  <div class="col-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Seat Type"
+                      formControlName="typeOfSeats"
+                      [ngStyle]="{
+                        'border-color':
+                          !typeOfSeats.valid && typeOfSeats.touched
+                            ? 'red'
+                            : 'none'
+                      }"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <button class="btn btn-success" (click)="AddPassenger()">Add More</button>&nbsp;
+                    <button class="btn btn-danger" (click)="this.addBookingForm.reset()">Cancel</button>&nbsp;
+                    <button class="btn btn-warning" style="background-color: #FFC300;"
+
+                    [disabled]="!this.addBookingMeta.valid"
+                    >Proceed to Booking</button>
+                  </div>
+                  <div class="col"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <table class="table table-bordered mt-4" *ngIf="Passengers.length>0">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Seat Type</th>
+                <th width="10px"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let passenger of Passengers">
+                <th scope="row">{{passenger.passengerName}}</th>
+                <td>{{passenger.passengerAge}}</td>
+                <td>{{passenger.passengerGender}}</td>
+                <td>{{passenger.typeOfSeats}}</td>
+                <td width="10px" (click)="deletePassenger(passenger.passengerName,passenger.passengerAge)">
+                  <button class="btn btn-danger">
+                  <i class="fa-solid fa-trash-can"></i>
+                  </button>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
