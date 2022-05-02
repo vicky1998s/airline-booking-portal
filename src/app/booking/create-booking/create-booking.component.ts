@@ -32,7 +32,7 @@ export class CreateBookingComponent implements OnInit {
 
       this.addBookingForm =  this.fb.group({
         passengerName: [null, Validators.required],
-        passengerGender: [null, Validators.required],
+        passengerGender: ['', Validators.required],
         passengerAge: [null, Validators.required],
         typeOfSeats: [null, Validators.required],
         optForMeal: [null, Validators.required]
@@ -60,6 +60,7 @@ export class CreateBookingComponent implements OnInit {
 
   onBookTicket(){
     let Finaloutput = Object.assign({},{'passenger':this.Passengers},this.addBookingMeta.value);
+    console.log(Finaloutput);
     if (this.addBookingForm.valid) {
       this.BookingService.addBooking(Finaloutput).subscribe((res) =>
       {

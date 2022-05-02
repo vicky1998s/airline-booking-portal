@@ -30,19 +30,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.addUserForm.value);
+    //console.log(this.addUserForm.value);
 
 
     if (this.addUserForm.valid) {
         // this.user = Object.assign(this.user, this.registerationForm.value);
-        this.UserService.login(this.userData()).subscribe((res:any) =>
-        {
+        //this.UserService.login(this.userData()).subscribe((res:any) =>
+        //{
           //console.log(res);
-            this.user_details=res;
-            //console.log(this.user_details);
-            this.onReset();
-            this.submitted = true;
-        });
+          //  this.user_details=res;
+            sessionStorage.setItem("role","1");
+            this.router.navigate(['schedule']);
+        //});
 
     }
 }

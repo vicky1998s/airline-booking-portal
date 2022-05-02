@@ -114,7 +114,19 @@
                     />
                   </div>
                   <div class="col">
-                    <input
+                    <select  class="form-select" formControlName="passengerGender"
+                    [ngStyle]="{
+                      'border-color':
+                        !passengerGender.valid && passengerGender.touched
+                          ? 'red'
+                          : 'none'
+                    }">
+                      <option value="" selected disabled >Select the role</option>
+                      <option value="M" >Male</option>
+                      <option value="F">Female</option>
+                      <option value="T">Transgender</option>
+                    </select>
+                    <!-- <input
                       type="text"
                       class="form-control"
                       placeholder="Gender"
@@ -125,7 +137,7 @@
                             ? 'red'
                             : 'none'
                       }"
-                    />
+                    />-->
                   </div>
                 </div>
                 <br />
@@ -163,7 +175,7 @@
                     <button class="btn btn-danger" (click)="this.addBookingForm.reset()">Cancel</button>&nbsp;
                     <button class="btn btn-warning" style="background-color: #FFC300;"
 
-                    [disabled]="!this.addBookingMeta.valid"
+                    [disabled]="!this.addBookingMeta.valid" (click)="onBookTicket()"
                     >Proceed to Booking</button>
                   </div>
                   <div class="col"></div>

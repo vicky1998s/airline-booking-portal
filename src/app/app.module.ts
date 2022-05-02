@@ -20,13 +20,13 @@ import { ListPassengerbyBookingidComponent } from './booking/passenger/list-pass
 import { ListBookingbyIdComponent } from './booking/list-bookingby-id/list-bookingby-id.component';
 import { ListAllBookingsComponent } from './booking/list-all-bookings/list-all-bookings.component';
 import { CreateBookingComponent } from './booking/create-booking/create-booking.component';
-import { RegisterComponent } from './user/register/register.component';
-import { LoginComponent } from './user/login/login.component';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { SharedModule } from './SharedModule/shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
     ListAirlinesComponent,
     AddAirlineComponent,
     UpdateAirlineComponent,
@@ -40,9 +40,7 @@ import { LoginComponent } from './user/login/login.component';
     ListBookingbyIdComponent,
     ListAllBookingsComponent,
     ListPassengerbyBookingidComponent,
-    CreateBookingComponent,
-    RegisterComponent,
-    LoginComponent
+    CreateBookingComponent
    ],
   imports: [
     HttpClientModule,
@@ -50,9 +48,7 @@ import { LoginComponent } from './user/login/login.component';
     RouterModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-
-
+    ReactiveFormsModule,AuthenticationModule,SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

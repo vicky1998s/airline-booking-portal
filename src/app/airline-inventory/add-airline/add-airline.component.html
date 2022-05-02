@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-6 m-auto">
     <div class="card m-auto">
-      <div class="card-header">
+      <div class="card-header text-center">
         <h3>Register</h3>
       </div>
       <div class="card-body">
@@ -41,9 +41,9 @@
               </span>
             </span>
           </div>
-          <div class="form-group col-12">
-            <button type="submit" class="btn btn-primary" [disabled]="!addAirlineForm.valid">Add</button>
-            <button type="button" (click)="onReset()" class="btn btn-secondary ml-2" routerLink="airline">Cancel</button>
+          <div class="form-group col-12 mt-2">
+            <button type="submit" class="btn btn-primary" [disabled]="!addAirlineForm.valid"><i class="fa-solid fa-plus"></i> Add</button>&nbsp;
+            <button type="button" (click)="onReset()" class="btn btn-secondary ml-2" routerLink="airline"><i class="fa-solid fa-trash-can"></i> Cancel</button>
           </div>
         </form>
       </div>

@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-6 m-auto">
     <div class="card m-auto">
       <div class="card-header">
@@ -42,4 +42,33 @@
 <br>
 <div *ngIf="submitted" style="color: green; text-align: center; ">
   <h4>User Registered successfully!</h4>
+</div> -->
+<div class="body">
+
+<form  [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+  <h1>Welcome Back</h1>
+  <p>Enter your credentials to continue.</p>
+
+  <div class="input-wrapper">
+    <input type="text" placeholder="Enter your username" formControlName="userName" placeholder="Please Enter User Name"
+    [ngStyle]="{'border-color': (!userName.valid && (userName.touched )) ?
+   'red':'none'}" />
+    <i class="bx bxs-user-circle"></i>
+  </div>
+
+  <div class="input-wrapper">
+    <input type="password" placeholder="Enter your password"  formControlName="password"
+    placeholder="Please enter Password"
+    [ngStyle]="{'border-color': (!password.valid && (password.touched )) ?
+   'red':'none'}">
+    <i class="bx bx-key"></i>
+  </div>
+
+  <div>
+    <div class="form-group col-12">
+      <button type="submit" class="btn btn-primary" [disabled]="!addUserForm.valid">Login</button>
+      <button type="button" (click)="onReset()" class="btn btn-secondary ml-2" routerLink="">Cancel</button>
+    </div>
+  </div>
+</form>
 </div>

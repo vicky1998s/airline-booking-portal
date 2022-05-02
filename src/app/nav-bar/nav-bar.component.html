@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">ABP</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,57 +7,40 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="" routerLinkActive="active">Home</a>
+          <a class="nav-link" aria-current="page" routerLink="schedule"
+          routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page"  routerLink="listBooking" routerLinkActive="active">Booking</a>
+          <a class="nav-link"
+          routerLink="listBooking" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">Booking</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page"  routerLink="listBookingbyid" routerLinkActive="active">My Booking</a>
+        <li class="nav-item" >
+          <a class="nav-link"
+           routerLink="listBookingbyid" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+           >My Booking</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="airline" routerLinkActive="active">Airline</a>
+        <li class="nav-item" *ngIf="role===0">
+          <a class="nav-link" routerLink="airline" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">Airline</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="schedule" routerLinkActive="active">Schedule</a>
+        <li class="nav-item" *ngIf="role===0">
+          <a class="nav-link" routerLink="schedulelist" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}"  >Schedule</a>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" >
-            Booking
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="listBooking" routerLinkActive="active">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+
+        <li class="nav-item" *ngIf="role===0">
+          <a class="nav-link" routerLink="couponManagement" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">Coupon</a>
         </li>
-        <li class="nav-item dropdown" ngbDropdown>
-          <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ngbDropdownToggle>
-            Link
-          </a>
-          <ul class="dropdown-menu"  ngbDropdownMenu aria-labelledby="navbarScrollingDropdown">
-            <li ngbDropdownItem><a class="dropdown-item" href="#">Action</a></li>
-            <li ngbDropdownItem><a class="dropdown-item" href="#">Another action</a></li>
-            <li ngbDropdownItem><hr class="dropdown-divider"></li>
-            <li ngbDropdownItem><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> -->
-        <li class="nav-item">
-          <a class="nav-link" routerLink="couponManagement" routerLinkActive="active">Coupon</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="registerUser" routerLinkActive="active">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="loginUser" routerLinkActive="active">Login</a>
+        <li class="nav-item text-end" >
+          <a class="nav-link" (click)="logout()"
+          >Logout</a>
         </li>
       </ul>
-      <!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
+
     </div>
   </div>
 </nav>
